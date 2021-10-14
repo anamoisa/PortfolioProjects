@@ -1,8 +1,11 @@
-SELECT  SUM(cast(new_cases as float)) as total_cases, SUM(cast(new_deaths as float)) as total_deaths, SUM(cast(new_deaths as float))/SUM(cast(new_cases as float))*100 as DeathPercentage
+SELECT  SUM(cast(new_cases as float)) as total_cases, 
+		SUM(cast(new_deaths as float)) as total_deaths, 
+		SUM(cast(new_deaths as float))/SUM(cast(new_cases as float))*100 as DeathPercentage
 From PortfolioProject..CovidDeaths1
-where continent is not null
+	where NULLIF(continent, '') is null
+	and location not in ('World', 'European Union', 'International')
 --Group by date
-order by 1,2
+	order by 1,2
 
 
 
@@ -19,3 +22,9 @@ FROM PortfolioProject..CovidDeaths1
 --WHERE location like '%France%'
 group by location, population
 order by PercentOfPopulationInfected DESC
+
+Select Location, Population,date, MAX(total_cases) as HighestInfectionCount,  Max((total_cases/population))*100 as PercentPopulationInfected
+From PortfolioProject..CovidDeaths
+--Where location like '%states%'
+Group by Location, Population, date
+order by PercentPopulationInfected desc
