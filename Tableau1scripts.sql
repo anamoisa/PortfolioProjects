@@ -28,3 +28,7 @@ From PortfolioProject..CovidDeaths
 --Where location like '%states%'
 Group by Location, Population, date
 order by PercentPopulationInfected desc
+
+
+
+https://public.tableau.com/app/profile/ana.moisa/viz/CovidNumbersDashboard_16341165282020/CovidNumbersDashboard?publish=yes
